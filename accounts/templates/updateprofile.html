@@ -1,0 +1,89 @@
+{% extends 'basic.html' %}
+
+
+{% block main %}
+
+<div class="container mt-5">
+    <div class="card mt-3" style="border: 5px solid #573170;">
+        <div class="card-body">
+            <h2 class="card-title text-center" style="text-transform: uppercase; color:#573170;">Update Profile</h2>
+            <hr>
+            <form  action="{% url 'updateprofile' %}" method="post">
+                {% csrf_token %}
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="firstname" class="form-control" value="{{user.first_name}}"   required >
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">last Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="lastname" class="form-control" value="{{user.last_name}}" required>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" name="email" id="email" value="{{user.email}}" class="form-control"  required>
+                    </div>
+                </div>
+
+
+
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Date of Birth</label>
+                    <div class="col-sm-10">
+                        <input type="date" name="dob"  value="{{user.date_of_birth.value | date:'c'}}"  class="form-control"  required>
+                    </div>
+                </div>
+
+
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Gender</label>
+                    <div class="col-sm-10">
+                        <select name="gender" value="{{user.gender}}" class="form-control">
+                            <option value="MALE">Male</option>
+                            <option value="FEMALE">Female</option>
+                            <option value="OTHER">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Enter Phone Number</label>
+                    <div class="col-sm-10">
+                        <input type="Text" name="phone" id="pass1" value="{{user.phonenumber}}"  class="form-control"  required>
+                    </div>
+                </div>
+
+
+
+
+
+      
+
+                <button type="submit" class="btn btn-primary float-right">Submit</button>
+            </form>
+        </div>
+    </div>
+</div> 
+{% if error == "no" %}
+<script>
+    alert("Registration successfully Now You can Login")
+    window.location=('{% url 'signin' %}');
+</script>
+{% elif  error == "yes" %}
+<script>
+    alert("Email or  Phone number already exists")
+</script>
+{% endif %}
+
+{% endblock main %}
+
+
+

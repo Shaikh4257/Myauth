@@ -1,0 +1,60 @@
+{% extends 'basic.html' %}
+{% block main %}
+
+<style>
+.formcontainer{
+  display:flex;
+}
+
+</style>
+
+<div class="container">
+<div class="formcontainer">
+  <form method="get" action="{% url 'search' %}" class="form-inline my-2 my-lg-0">
+    <div>
+    <input style="width:300px;" class="form-control mr-sm-2 my-5" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
+  </div>
+  <div>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </div>
+  </form>
+</div>
+
+    <table class="table table-hover my-5" id="dev-table">
+        <thead>
+  
+          <tr>
+            <th>Srno</th>
+            <th>Name</th>
+            <th>Date Of birth</th>
+            <th>Gender</th>
+            <th>Email</th>
+            <th>Type</th>
+            <th>Phone Number</th>
+          </tr>
+        </thead>
+        <tr>
+          {% for i in user %}
+          <td>{{forloop.counter}}</td>
+          <td>{{i.first_name}} {{i.last_name}}</td>
+          <td>{{i.date_of_birth}}</td>
+          <td>{{i.gender}}</td>
+          <td>{{i.email}}</td>
+          <td>{{i.type}}</td>
+          <td>{{i.phonenumber}}</td>
+        </tr>
+        {% endfor %}
+        
+      </table>
+      {% if user.has_previous %}
+      <a href="{% url 'dashboard'%}?page={{user.previous_page_number}}">Previos page</a>
+      {% endif %}
+      {% if user.has_next %}
+      <a href="{% url 'dashboard'%}?page={{user.next_page_number}}">Next Page</a>
+      {% endif %}
+    </div>
+{% endblock main %}
+
+
+
+

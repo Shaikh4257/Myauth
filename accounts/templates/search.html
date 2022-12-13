@@ -1,0 +1,33 @@
+{% extends 'basic.html' %}
+{% block main %}
+
+<div class="container">
+
+    <table class="table table-hover my-5" id="dev-table">
+        <thead>
+  
+          <tr>
+            <th>Srno</th>
+            <th>Name</th>
+            <th>Date Of birth</th>
+            <th>Gender</th>
+            <th>Email</th>
+            <th>Type</th>
+            <th>Phone Number</th>
+          </tr>
+        </thead>
+        <tr>
+          {% for i in result %}
+          <td>{{forloop.counter}}</td>
+          <td>{{i.first_name}} {{i.last_name}}</td>
+          <td>{{i.date_of_birth}}</td>
+          <td>{{i.gender}}</td>
+          <td>{{i.email}}</td>
+          <td>{{i.type}}</td>
+          <td>{{i.phonenumber}}</td>
+        </tr>
+        {% endfor %}
+        
+      </table>
+    </div>
+{% endblock main %}

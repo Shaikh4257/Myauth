@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>SignIn</h3>
+    <form action="/signin" method="post">
+      {% csrf_token %}
+      <label for="">Username</label>
+      <input type="email" name="username" id="username" placeholder="Enter a username" Required />
+      <br />
+
+      <label for="">Password</label>
+      <input type="password" name="pass1" id="pass1" placeholder="Enter your password here" Required />
+      <br />
+
+      <button type="submit">Submit</button>
+    </form>
+    <button type="submit"><a href="/signup">SignUp</a></button>
+
+    {% if error == "no" %}
+    <script>
+      alert("Authentication successfully");
+      window.location=('{% url 'dashboard' %}');
+    </script>
+  
+    {% endif %}
+    {% if error == "yes" %}
+    <script>
+        alert('Invalid Credentials');
+    </script>
+    {% endif %}
+  </body>
+</html>
